@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>SocketIOチャット</title>
+</head>
+<body>
+
+<h1>SocketIOチャット</h1>
+
+<form id="frm-post">
+  <input type="text" id="msg">
+  <button>送信</button>
+</form>
+
+<ul id="msglist">
+</ul>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+
+  document.querySelector("#frm-post").addEventListener("submit", (e)=>{
+    e.preventDefault();
+
+    const msg = document.querySelector("#msg");
+    if( msg.value === "" ){
+      return(false);
+    }
+
+    socket.emit("post", {text: msg.value});
+
+    msg.value = "";
+  });
+  //[イベント]member-postがキャストされた
+  socket.on("member-post", (msg)=>{
+    const list = document.querySelector("#msglist");
+    const li = document.createElement("li");
+    li.innerHTML = `${msg.text}`;
+    list.insertBefore(li, list.firstChild);
+  });
+
+  window.onload = ()=>{
+    document.querySelector("#msg").focus();
+  }
+</script>
+</body>
+</html>
