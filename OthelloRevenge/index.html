@@ -1,0 +1,29 @@
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>Othello Game(test)</title>
+    <link href="assets/css/othello.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="other">
+        <div id="other_count">other_count</div>
+        <div id="other_state">other_state</div>
+    </div>
+    <div id="main" class="container">
+        <div id="board"></div>
+        <div id="current_player">Current-Player : <span id="current_player_name">-</span></div>
+        <div id="message"></div>
+        <div id="console"></div>
+    </div>
+    <div id="my">
+        <div id="my_count">my_count</div>
+        <div id="my_state">my_state</div>
+    </div>
+    
+    <script src="assets/socket.io/socket.io.js"></script>
+    <script src="assets/souce/othello.js"></script>
+
+</body>
+
+</html>
